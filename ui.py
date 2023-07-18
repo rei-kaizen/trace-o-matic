@@ -27,12 +27,12 @@ class Interface:
         title_label.place(x=470, y=50)
 
         # search engine
-        search = Label(header_frame, text="\U0001F50D", font=(13), bg="white")
+        search = Label(header_frame, text="\U0001F50D", font=(12), bg="white")
         search.place(x=50, y=90)
 
         # search entry
         self.search_entry = Entry(header_frame, borderwidth=0, bg="white")
-        self.search_entry.place(x=80, y=97)
+        self.search_entry.place(x=80, y=95)
 
         self.search_entry.insert(0, "Search...")
         self.search_entry.bind("<FocusIn>", self.clear_search_text)
@@ -79,10 +79,10 @@ class Interface:
         self.animate_gif()
 
         # slogan for welcome page
-        slogan_label = Label(self.win, text="SMART TRACE,", font=("Corbel", 25), fg="white", bg="green")
-        slogan_label.place(x=400, y=250)
-        slogan_label1 = Label(self.win, text="SAFEGUARDING EVERY PLACE", font=("Corbel", 25), fg="white", bg="green")
-        slogan_label1.place(x=280, y=300)
+        slogan_label = Label(self.win, text=" SMART TRACE, ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
+        slogan_label.place(x=380, y=250)
+        slogan_label1 = Label(self.win, text=" SAFEGUARDING EVERY PLACE ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
+        slogan_label1.place(x=260, y=300)
         
         # sign up button
         signup_button = Button(self.win, text="Sign Up", font=("Corbel", 10), height=2, width=10, borderwidth=1, fg="white", bg="green", command=self.sign_up)
