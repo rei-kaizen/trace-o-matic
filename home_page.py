@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import imageio
 from signup_page import SignUpWindow
 
-class Interface:
+class HomeWindow:
     def __init__(self):
         self.win = Tk()
         self.win.geometry("1000x600")
@@ -33,11 +33,10 @@ class Interface:
 
         # search entry
         self.search_entry = Entry(header_frame, bd=0, bg="white")
-        self.search_entry.place(x=80, y=95)
-
+        self.search_entry.place(x=80, y=97)
         self.search_entry.insert(0, "Search...")
         self.search_entry.bind("<FocusIn>", self.clear_search_text)
-        self.search_entry.config(fg="gray")
+
 
         # home button
         self.home_button = Button(header_frame, text="Home", font=("Corbel", 9),  bd=0, bg="white", activebackground="#D9EAE9", command=self.on_home)
@@ -125,4 +124,4 @@ class Interface:
     def sign_up(self):
         SignUpWindow(self.win)    
 
-Interface()
+HomeWindow()

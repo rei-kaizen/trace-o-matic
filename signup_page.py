@@ -19,12 +19,41 @@ class SignUpWindow:
         heading_label = Label(self.win, text="Sign Up", font=("Arial Rounded MT Bold", 20))
         heading_label.place(x=20, y=10)
 
-        subheading_label = Label(self.win, text="Enter your details to create your entry", font=("Cobrel", 10), fg="gray")
+        subheading_label = Label(self.win, text="Enter your details to create your entry", font=("Cobrel", 11), fg="gray")
         subheading_label.place(x=20, y=50)
         
+        # full name
+        name_label = Label(self.win, text="Full Name", font=("Corbel", 10), fg="black")
+        name_label.place(x=20, y=100)
+        
+        name_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
+        name_entry.place(x=20, y=120)
+        
+        # address
+        address_label = Label(self.win, text="Address", font=("Corbel", 10), fg="black")
+        address_label.place(x=20, y=150)
+        
+        address_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
+        address_entry.place(x=20, y=180)
+        
+        # cellphone
+        cellphone_label = Label(self.win, text="Cellphone", font=("Corbel", 10), fg="black")
+        cellphone_label.place(x=20, y=210)
+        
+        cellphone_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
+        cellphone_entry.place(x=20, y=240)
+        
+        # landline
+        landline_label = Label(self.win, text="Landline", font=("Corbel", 10), fg="black")
+        landline_label.place(x=20, y=270)
+        
+        landline_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
+        landline_entry.place(x=20, y=300)
+        
+        
         # checkbutton for consent
-        self.agree_radio = Checkbutton(self.win, text="I Agree to", font=("Corbel", 8), activebackground="#39767A")
-        self.agree_radio.place(x=20, y=375)
+        agree_radio = Checkbutton(self.win, text="I Agree to", font=("Corbel", 8), activebackground="#39767A")
+        agree_radio.place(x=20, y=375)
         
         #consent
         consent_button = Button(self.win, text="Data Privacy Consent.", font=("Corbel", 9), fg="#39767A", activeforeground="blue", bd=0, command= self.consent)
