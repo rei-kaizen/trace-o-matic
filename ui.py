@@ -82,7 +82,7 @@ class Interface:
         slogan_label = Label(self.win, text=" SMART TRACE, ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
         slogan_label.place(x=380, y=250)
         slogan_label1 = Label(self.win, text=" SAFEGUARDING EVERY PLACE ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
-        slogan_label1.place(x=260, y=300)
+        slogan_label1.place(x=250, y=300)
         
         # sign up button
         signup_button = Button(self.win, text="Sign Up", font=("Corbel", 10), height=2, width=10, borderwidth=1, fg="white", bg="green", command=self.sign_up)
