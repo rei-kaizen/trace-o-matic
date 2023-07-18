@@ -28,12 +28,12 @@ class HomeWindow:
         title_label.place(x=470, y=50)
 
         # search engine
-        search = Label(header_frame, text="\U0001F50D", font=(12), bg="white")
-        search.place(x=50, y=90)
+        search = Label(header_frame, text="\U0001F50D", font=("Corbel", 11), bg="white")
+        search.place(x=60, y=85)
 
         # search entry
         self.search_entry = Entry(header_frame, bd=0, bg="white")
-        self.search_entry.place(x=80, y=97)
+        self.search_entry.place(x=80, y=90)
         self.search_entry.insert(0, "Search...")
         self.search_entry.bind("<FocusIn>", self.clear_search_text)
 
