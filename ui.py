@@ -1,4 +1,5 @@
 from tkinter import *
+from PIL import Image, ImageTk
 
 class Interface:
     def __init__(self):
@@ -6,24 +7,31 @@ class Interface:
         self.win.geometry("1000x600")
         self.win.title('Trace-O-Matic')
 
-        # Add logo
-        logo = PhotoImage(file="assets/tom-logo.png")
+        # add icon to window
+        logo = Image.open("assets/tom-logo.png")
+        logo = logo.resize((50, 50), Image.LANCZOS)
+        logo = ImageTk.PhotoImage(logo)
         self.win.iconphoto(False, logo)
 
-        # Set the frame for the header
-        header_frame = Frame(self.win, width=1000, height=100, bg="white")
-        header_frame.place(x=0, y=0)
+        # set the frame for the header
+        header_frame = Frame(self.win, width=1000, height=120, bg="white")
+        header_frame.pack()
 
-        title_label = Label(self.win, text="TRACE-O-MATIC", font=("Oswald", 10), fg="black", bg="white")
-        title_label.pack(pady=20)
+        # display the logo image to header
+        logo_label = Label(header_frame, image=logo, bg="white")
+        logo_label.place(x=490, y=0)
 
-        # Search engine
+        # title
+        title_label = Label(header_frame, text="Trace-O-Matic", font=("Oswald 10 bold"), fg="black", bg="white")
+        title_label.place(x=470, y=50)
+
+        # search engine
         search = Label(header_frame, text="\U0001F50D", font=("Muli", 13), bg="white")
-        search.place(x=50, y=60)
+        search.place(x=50, y=90)
 
         # search entry
         self.search_entry = Entry(header_frame, borderwidth=0, bg="white")
-        self.search_entry.place(x=80, y=67)
+        self.search_entry.place(x=80, y=97)
 
         self.search_entry.insert(0, "Search...")
         self.search_entry.bind("<FocusIn>", self.clear_search_text)
@@ -31,15 +39,15 @@ class Interface:
 
         # home button
         self.home_button = Button(header_frame, text="Home", font=("Muli", 9),  borderwidth=0, bg="white", command=self.on_home)
-        self.home_button.place(x=400, y=60)
+        self.home_button.place(x=400, y=90)
 
         # About button
         self.faq_button = Button(header_frame, text="About", font=("Muli", 9), borderwidth=0, bg="white", command=self.on_about)
-        self.faq_button.place(x=500, y=60)
+        self.faq_button.place(x=500, y=90)
         
         # FAQ button
         self.faq_button = Button(header_frame, text="FAQ", font=("Muli",9), borderwidth=0, bg="white", command=self.on_faq)
-        self.faq_button.place(x=600, y=60)
+        self.faq_button.place(x=600, y=90)
 
 
         # slogan for welcome page
