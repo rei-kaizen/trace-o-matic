@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import imageio
 
 class Interface:
     def __init__(self):
@@ -66,19 +67,45 @@ class Interface:
         icon2 = ImageTk.PhotoImage(icon2)
         icon2_label = Label(header_frame, image=icon2, bg="white")
         icon2_label.place(x=900, y=90)
+    
+        # load the animated GIF
+        gif_path = "assets/home-bg4.gif"
+        self.gif_frames = self.load_gif_frames(gif_path)
+        self.current_frame = 0
+
+        # canvas to display the animated GIF
+        self.canvas = Canvas(self.win, width=1000, height=600, highlightthickness=0)
+        self.canvas.pack()
+        self.animate_gif()
 
         # slogan for welcome page
-        slogan_label = Label(self.win, text="SMART TRACE,", font=("Corbel", 25), fg="black")
+        slogan_label = Label(self.win, text="SMART TRACE,", font=("Corbel", 25), fg="white", bg="green")
         slogan_label.place(x=400, y=250)
-        slogan_label1 = Label(self.win, text="SAFEGUARDING EVERY PLACE", font=("Corbel", 25), fg="black")
+        slogan_label1 = Label(self.win, text="SAFEGUARDING EVERY PLACE", font=("Corbel", 25), fg="white", bg="green")
         slogan_label1.place(x=280, y=300)
         
         # sign up button
-        signup_button = Button(self.win, text="Sign Up", font=("Corbel", 10), height=2, width=10, borderwidth=1, bg="white", command=self.sign_up)
+        signup_button = Button(self.win, text="Sign Up", font=("Corbel", 10), height=2, width=10, borderwidth=1, fg="white", bg="green", command=self.sign_up)
         signup_button.place(x=480, y=370)
-
+        
+        #run window
         self.win.mainloop()
+        
+    def load_gif_frames(self, gif_path):
+        gif = imageio.mimread(gif_path)
+        frames = []
+        for frame_data in gif:
+            frame = Image.fromarray(frame_data)
+            frame = frame.resize((1000, 600), Image.LANCZOS)  # Resize the frame
+            frames.append(ImageTk.PhotoImage(frame))
+        return frames
 
+    def animate_gif(self):
+        self.canvas.delete("all")
+        self.canvas.create_image(0, 0, image=self.gif_frames[self.current_frame], anchor="nw")  # Adjust the y coordinate
+        self.current_frame = (self.current_frame + 1) % len(self.gif_frames)
+        self.win.after(100, self.animate_gif)
+        
     def clear_search_text(self, event):
         self.search_entry.delete(0, END)
 
