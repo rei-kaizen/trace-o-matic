@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import imageio
+from signup_page import SignUpWindow
 
 class Interface:
     def __init__(self):
@@ -31,7 +32,7 @@ class Interface:
         search.place(x=50, y=90)
 
         # search entry
-        self.search_entry = Entry(header_frame, borderwidth=0, bg="white")
+        self.search_entry = Entry(header_frame, bd=0, bg="white")
         self.search_entry.place(x=80, y=95)
 
         self.search_entry.insert(0, "Search...")
@@ -39,15 +40,15 @@ class Interface:
         self.search_entry.config(fg="gray")
 
         # home button
-        self.home_button = Button(header_frame, text="Home", font=("Corbel", 9),  borderwidth=0, bg="white", command=self.on_home)
+        self.home_button = Button(header_frame, text="Home", font=("Corbel", 9),  bd=0, bg="white", activebackground="#D9EAE9", command=self.on_home)
         self.home_button.place(x=400, y=90)
 
         # About button
-        self.faq_button = Button(header_frame, text="About", font=("Corbel", 9), borderwidth=0, bg="white", command=self.on_about)
-        self.faq_button.place(x=500, y=90)
+        self.about_button = Button(header_frame, text="About", font=("Corbel", 9), bd=0, bg="white", activebackground="#D9EAE9", command=self.on_about)
+        self.about_button.place(x=500, y=90)
         
         # FAQ button
-        self.faq_button = Button(header_frame, text="FAQ", font=("Corbel",9), borderwidth=0, bg="white", command=self.on_faq)
+        self.faq_button = Button(header_frame, text="FAQ", font=("Corbel",9), bd=0, bg="white", activebackground="#D9EAE9", command=self.on_faq)
         self.faq_button.place(x=600, y=90)
 
         # add an entry icon
@@ -58,7 +59,7 @@ class Interface:
         icon1_label.place(x=800, y=90)
         
         # add button
-        self.add_button = Button(header_frame, text="New Entry", font=("Corbel",9), borderwidth=0, bg="white", command=self.sign_up)
+        self.add_button = Button(header_frame, text="New Entry", font=("Corbel",9), bd=0, bg="white", activeforeground="#286A6F", command=self.sign_up)
         self.add_button.place(x=820, y=90)
         
         # entry counter
@@ -85,8 +86,8 @@ class Interface:
         slogan_label1.place(x=250, y=300)
         
         # sign up button
-        signup_button = Button(self.win, text="Sign Up", font=("Corbel", 10), height=2, width=10, borderwidth=1, fg="white", bg="green", command=self.sign_up)
-        signup_button.place(x=480, y=370)
+        signup_button = Button(self.win, text="Sign Up", font=("Corbel", 10), height=2, width=10, bd=1, bg="#CFCF5A", activebackground="#8DAEA0", command=self.sign_up)
+        signup_button.place(x=475, y=370)
         
         #run window
         self.win.mainloop()
@@ -122,9 +123,6 @@ class Interface:
         print("Just landed on the faq")
     
     def sign_up(self):
-        # direct to faq page
-        print("Just landed on the trace form")
-    
-
+        SignUpWindow(self.win)    
 
 Interface()
