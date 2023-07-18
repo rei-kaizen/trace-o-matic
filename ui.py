@@ -49,6 +49,23 @@ class Interface:
         self.faq_button = Button(header_frame, text="FAQ", font=("Muli",9), borderwidth=0, bg="white", command=self.on_faq)
         self.faq_button.place(x=600, y=90)
 
+        # add an entry icon
+        icon1 = Image.open("assets/add-icon1.jpg")
+        icon1 = icon1.resize((20, 20), Image.LANCZOS)
+        icon1 = ImageTk.PhotoImage(icon1)
+        icon1_label = Label(header_frame, image=icon1, bg="white")
+        icon1_label.place(x=800, y=90)
+        
+        # add button
+        self.add_button = Button(header_frame, text="New Entry", font=("Muli",9), borderwidth=0, bg="white", command=self.sign_up)
+        self.add_button.place(x=820, y=90)
+        
+        # entry counter
+        icon2 = Image.open("assets/entries-icon2.jpg")
+        icon2 = icon1.resize((20, 20), Image.LANCZOS)
+        icon2 = ImageTk.PhotoImage(icon2)
+        icon2_label = Label(header_frame, image=icon2, bg="white")
+        icon2_label.place(x=900, y=90)
 
         # slogan for welcome page
         slogan_label = Label(self.win, text="SMART TRACE,", font=("Noto Sans", 25), fg="black")
@@ -71,7 +88,7 @@ class Interface:
         
     def on_about(self):
         # direct to faq page
-        print("Just landed on the faq")
+        print("Just landed on the about page")
         
     def on_faq(self):
         # direct to faq page
@@ -80,6 +97,7 @@ class Interface:
     def sign_up(self):
         # direct to faq page
         print("Just landed on the trace form")
+    
 
 
 Interface()
