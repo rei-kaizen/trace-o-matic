@@ -1,0 +1,16 @@
+# define the Functionalities class:
+- define methods for the app's functionalities
+
+# define a UI class:
+- initialize the GUI elements (labels, entry fields, buttons, etc.)
+- define methods for entry fields and buttons elements 
+- run the main event loop to start the UI
+
+
+# define the CovidTraceApp class:
+- create an instance of the UI and Fucntionalities class
+- calls the appropriate method in the said classes when required
+- run the app
+
+# requirements:
+- tkinter==8.6 ver
