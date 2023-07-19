@@ -1,7 +1,7 @@
-
 from tkinter import *
 from PIL import Image, ImageTk
 from consent_form import DataPrivacy
+from tkinter import ttk
 
 class SignUpWindow:
     def __init__(self, parent):
@@ -29,35 +29,48 @@ class SignUpWindow:
         name_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
         name_entry.place(x=20, y=120)
         
+        #gender
+        gender_label = Label(self.win, text="Gender", font=("Corbel", 10), fg="black")
+        gender_label.place(x=300, y=100)
+        
+        gender_combo = ttk.Combobox(self.win, values=["Female", "Male"], font=("Corbel", 10))
+        gender_combo.place(x=300, y=120)
+        
         # address
         address_label = Label(self.win, text="Address", font=("Corbel", 10), fg="black")
-        address_label.place(x=20, y=150)
+        address_label.place(x=20, y=170)
         
         address_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
-        address_entry.place(x=20, y=180)
+        address_entry.place(x=20, y=190)
+        
+        #civil status
+        cs_label = Label(self.win, text="Civil Status", font=("Corbel", 10), fg="black")
+        cs_label.place(x=300, y=170)
+        
+        cs_combo = ttk.Combobox(self.win, values=["Annuled", "Cohabiting", "Divorce", "Not Specified", "Married", "Separated", "Single", "Widowed"], font=("Corbel", 10))
+        cs_combo.place(x=300, y=190)
         
         # cellphone
         cellphone_label = Label(self.win, text="Cellphone", font=("Corbel", 10), fg="black")
-        cellphone_label.place(x=20, y=210)
+        cellphone_label.place(x=20, y=240)
         
         cellphone_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
-        cellphone_entry.place(x=20, y=240)
+        cellphone_entry.place(x=20, y=260)
         
         # landline
         landline_label = Label(self.win, text="Landline", font=("Corbel", 10), fg="black")
-        landline_label.place(x=20, y=270)
+        landline_label.place(x=20, y=310)
         
         landline_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
-        landline_entry.place(x=20, y=300)
-        
+        landline_entry.place(x=20, y=330)
         
         # checkbutton for consent
-        agree_radio = Checkbutton(self.win, text="I Agree to", font=("Corbel", 8), activebackground="#39767A")
-        agree_radio.place(x=20, y=375)
+        agree_radio = Checkbutton(self.win, text="I Agree to", font=("Corbel", 9), activebackground="#39767A")
+        agree_radio.place(x=20, y=374)
         
         #consent
         consent_button = Button(self.win, text="Data Privacy Consent.", font=("Corbel", 9), fg="#39767A", activeforeground="blue", bd=0, command= self.consent)
-        consent_button.place(x=100, y=375)
+        consent_button.place(x=90, y=375)
 
         # submit button
         submit_button = Button(self.win, text="Submit", font=("Corbel", 10), fg="white", bg="#286A6F", bd=1, height=2, width=10, activebackground="#1E5256", command= self.submit)
