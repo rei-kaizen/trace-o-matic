@@ -1,19 +1,15 @@
 from tkinter import *
-from PIL import Image, ImageTk
 from consent_form import DataPrivacy
-from tkinter import ttk
-
-class SignUpWindow:
+import tkinter.ttk as ttk
+import ttkbootstrap as tb
+from ttkbootstrap.constants import *
+class SignUpWindow():
     def __init__(self, parent):
+        
         self.parent = parent
         self.win = Toplevel(parent)
-        self.win.geometry("1000x600")
-        self.win.title('Trace-O-Matic')
-        
-        #logo icon
-        logo = Image.open("assets/tom-logo.png")
-        logo = ImageTk.PhotoImage(logo)
-        self.win.iconphoto(False, logo)
+        self.win.geometry("500x600")
+        self.win.title('Registration')
 
         # user information input fields
         heading_label = Label(self.win, text="Sign Up", font=("Arial Rounded MT Bold", 20))
@@ -57,6 +53,13 @@ class SignUpWindow:
         cellphone_entry = Entry(self.win, font=("Corbel", 9), fg="black", width=40, bd=1, bg="#E8E6E5")
         cellphone_entry.place(x=20, y=260)
         
+        # birth date
+        calendar = tb.DateEntry(self.win)
+        calendar.place(x=300, y=240)
+        
+        calendar_button = ttk.Button(self.win, text="Get Date", command=self.get_bday)
+        calendar_button.place(x=340, y=280)
+
         # landline
         landline_label = Label(self.win, text="Landline", font=("Corbel", 10), fg="black")
         landline_label.place(x=20, y=310)
@@ -65,20 +68,21 @@ class SignUpWindow:
         landline_entry.place(x=20, y=330)
         
         # checkbutton for consent
-        agree_radio = Checkbutton(self.win, text="I Agree to", font=("Corbel", 9), activebackground="#39767A")
-        agree_radio.place(x=20, y=374)
+        agree_button = Checkbutton(self.win, text="I Agree to", font=("Corbel", 10), activebackground="#39767A")
+        agree_button.place(x=20, y=375)
         
         #consent
-        consent_button = Button(self.win, text="Data Privacy Consent.", font=("Corbel", 9), fg="#39767A", activeforeground="blue", bd=0, command= self.consent)
-        consent_button.place(x=90, y=375)
+        consent_button = tb.Button(self.win, text="Data Privacy Consent.", bootstyle="light", command= self.consent)
+        consent_button.place(x=100, y=375)
 
         # submit button
-        submit_button = Button(self.win, text="Submit", font=("Corbel", 10), fg="white", bg="#286A6F", bd=1, height=2, width=10, activebackground="#1E5256", command= self.submit)
-        submit_button.place(x=20, y=400)
+        submit_button = tb.Button(self.win, text="Submit",  bootstyle="info", command= self.submit)
+        submit_button.place(x=20, y=420)
         
         # cancel button
-        cancel_button = Button(self.win, text="Cancel", font=("Corbel", 10), fg="#286A6F", bg="#B4DDDA", activebackground="#1E5256", bd=1, height=2, width=10, command=self.close_window)
-        cancel_button.place(x=120, y=400)
+        cancel_button = tb.Button(self.win, text="Cancel", bootstyle="info-outline", command=self.close_window)
+        cancel_button.place(x=100, y=420)
+    
         
         self.win.mainloop()
 
@@ -90,4 +94,7 @@ class SignUpWindow:
     
     def consent(self):
         DataPrivacy(self.win)
+    
+    def get_bday(self):
+        self.calendar.get() 
         
