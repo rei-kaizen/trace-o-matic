@@ -3,6 +3,8 @@ from PIL import Image, ImageTk
 import imageio
 from signup_page import SignUpWindow
 from search_box import SearchWindow
+from about_page import AboutWindow
+from faq_page import FAQWindow
 
 class HomeWindow(Tk):
     def __init__(self):
@@ -109,16 +111,15 @@ class HomeWindow(Tk):
         self.after(100, self.animate_gif)
         
     def on_home(self):
-        # an action to go back to main page
-        print("Just landed on the home screen.")
+        self.deiconify()
         
     def on_about(self):
-        # direct to faq page
-        print("Just landed on the about page")
+        # direct to about page
+        AboutWindow(self)
         
     def on_faq(self):
         # direct to faq page
-        print("Just landed on the faq")
+        FAQWindow(self)
 
 if __name__ == "__main__":
     home_window = HomeWindow()
