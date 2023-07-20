@@ -1,6 +1,7 @@
 import csv
 from tkinter import *
 from ttkbootstrap import *
+from info_display import OutputWindow 
 
 class SearchWindow:
     def __init__(self, parent):
@@ -48,21 +49,14 @@ class SearchWindow:
     def update(self, data):
         self.listbox.delete(0, 'end')
         for user in data:
-            self.listbox.insert('end', user[0])  # Display the name (column 1)
-
+            self.listbox.insert('end', user[0])
+    
     def show_user_info(self, event):
         selected_user_index = self.listbox.curselection()
         if selected_user_index:
             user_info = self.userdata[selected_user_index[0]]
-            self.show_info(user_info)
+            OutputWindow(self.top, user_info)
 
-    def show_info(self, user_info):
-        self.info_label.config(text=f"Gender: {user_info[1]}\n"
-                                f"Address: {user_info[2]}\n"
-                                f"Civil Status: {user_info[3]}\n"
-                                f"Birthday: {user_info[4]}\n"
-                                f"Email : {user_info[5]}\n"
-                                f"Phone Number: {user_info[6]}")
     
     def fadein(self, event):
         self.entry.delete(0, END)

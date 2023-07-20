@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 import imageio
 from signup_page import SignUpWindow
-from test_search_page import SearchWindow
+from search_box import SearchWindow
 
 class HomeWindow(Tk):
     def __init__(self):
