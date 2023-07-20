@@ -47,7 +47,7 @@ class SignUpWindow:
         self.cs_combo = ttk.Combobox(self.su_win, values=["Annuled", "Cohabiting", "Divorce", "Not Specified", "Married", "Separated", "Single", "Widowed"], font=("Corbel", 10))
         self.cs_combo.place(x=300, y=190)
         
-        # cellphone
+        # email
         email_label = Label(self.su_win, text="Email", font=("Corbel", 10), fg="black")
         email_label.place(x=20, y=240)
         
@@ -57,11 +57,8 @@ class SignUpWindow:
         # birth date
         self.calendar = tb.DateEntry(self.su_win)
         self.calendar.place(x=300, y=240)
-        
-        # calendar_button = ttk.Button(self.win, text="Get Date", command=self.get_bday)
-        # calendar_button.place(x=340, y=280)
 
-        # landline
+        # phone number
         cp_label = Label(self.su_win, text="Phone Number", font=("Corbel", 10), fg="black")
         cp_label.place(x=20, y=310)
         
@@ -103,7 +100,6 @@ class SignUpWindow:
         email = self.emeil_entry.get()
         cellnum = self.cp_entry.get()
         
-        # Save the file using CVS
         with open('entries.csv', 'a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([name, gender, location, civil_status, birthdate, email, cellnum])

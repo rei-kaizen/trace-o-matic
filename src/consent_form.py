@@ -15,7 +15,7 @@ class DataPrivacy:
         line.place(x=20, y=50)
 
 
-        # data privacy consent paragraph
+        # data privacy consent text
         consent_text = """By clicking "I Agree," you confirm that you willingly and voluntarily give consent 
 for the collection and processing of your data for the purposes outlined below.
 
@@ -41,7 +41,7 @@ If you do not agree, please refrain from using the app."""
         consent_label = Label(self.win, text=consent_text, font=("Corbel", 12), justify=LEFT)
         consent_label.place(x=20, y=80)
 
-        # cancel button
+        # close button
         close_button = Button(self.win, text="Close", font=("Corbel", 10), fg="#286A6F", bg="#B4DDDA", activebackground="#1E5256", bd=1, height=2, width=10, command=self.close_window)
         close_button.place(x=800, y=500)
 

@@ -42,7 +42,7 @@ class HomeWindow(Tk):
         self.home_button = Button(header_frame, text="Home", font=("Corbel", 9),  bd=0, bg="white", activebackground="#D9EAE9", command=self.on_home)
         self.home_button.place(x=400, y=90)
 
-        # About button
+        # about button
         self.about_button = Button(header_frame, text="About", font=("Corbel", 9), bd=0, bg="white", activebackground="#D9EAE9", command=self.on_about)
         self.about_button.place(x=500, y=90)
         
@@ -100,17 +100,18 @@ class HomeWindow(Tk):
         frames = []
         for frame_data in gif:
             frame = Image.fromarray(frame_data)
-            frame = frame.resize((1000, 600), Image.LANCZOS)  # Resize the frame
+            frame = frame.resize((1000, 600), Image.LANCZOS)
             frames.append(ImageTk.PhotoImage(frame))
         return frames
 
     def animate_gif(self):
         self.canvas.delete("all")
-        self.canvas.create_image(0, 0, image=self.gif_frames[self.current_frame], anchor="nw")  # Adjust the y coordinate
+        self.canvas.create_image(0, 0, image=self.gif_frames[self.current_frame], anchor="nw")
         self.current_frame = (self.current_frame + 1) % len(self.gif_frames)
         self.after(100, self.animate_gif)
         
     def on_home(self):
+        #direct to the main page
         self.deiconify()
         
     def on_about(self):
