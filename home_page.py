@@ -4,20 +4,20 @@ import imageio
 from signup_page import SignUpWindow
 from test_search_page import SearchWindow
 
-class HomeWindow:
+class HomeWindow(Tk):
     def __init__(self):
-        self.win = Tk()
-        self.win.geometry("1000x600")
-        self.win.title('Trace-O-Matic')
-                        
+        super().__init__()
+        self.geometry("1000x600")
+        self.title('Trace-O-Matic')
+  
         # add icon to window
         logo = Image.open("assets/tom-logo.png")
         logo = logo.resize((50, 50), Image.LANCZOS)
         logo = ImageTk.PhotoImage(logo)
-        self.win.iconphoto(False, logo)
+        self.iconphoto(False, logo)
 
         # set the frame for the header
-        header_frame = Frame(self.win, width=1000, height=120, bg="white")
+        header_frame = Frame(self, width=1000, height=120, bg="white")
         header_frame.pack()
 
         # display the logo image to header
@@ -72,28 +72,26 @@ class HomeWindow:
         self.current_frame = 0
 
         # canvas to display the animated GIF
-        self.canvas = Canvas(self.win, width=1000, height=600, highlightthickness=0)
+        self.canvas = Canvas(self, width=1000, height=600, highlightthickness=0)
         self.canvas.pack()
         self.animate_gif()
 
         # slogan for welcome page
-        slogan_label = Label(self.win, text=" SMART TRACE, ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
+        slogan_label = Label(self, text=" SMART TRACE, ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
         slogan_label.place(x=380, y=250)
-        slogan_label1 = Label(self.win, text=" SAFEGUARDING EVERY PLACE ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
+        slogan_label1 = Label(self, text=" SAFEGUARDING EVERY PLACE ", font=("Arial Rounded MT Bold", 25), fg="white", bg="green")
         slogan_label1.place(x=250, y=300)
         
         # sign up button
-        signup_button = Button(self.win, text="Sign Up", font=("Corbel", 10), height=2, width=10, bd=1, bg="#CFCF5A", activebackground="#8DAEA0", command=self.sign_up)
+        signup_button = Button(self, text="Sign Up", font=("Corbel", 10), height=2, width=10, bd=1, bg="#CFCF5A", activebackground="#8DAEA0", command=self.sign_up)
         signup_button.place(x=475, y=370)
         
-        #run window
-        self.win.mainloop()
-        
     def sign_up(self):
-        SignUpWindow(self.win)
+        self.withdraw()
+        SignUpWindow(self)
     
     def search(self):
-        SearchWindow(self.win)
+        SearchWindow(self)
         
     def load_gif_frames(self, gif_path):
         gif = imageio.mimread(gif_path)
@@ -108,11 +106,8 @@ class HomeWindow:
         self.canvas.delete("all")
         self.canvas.create_image(0, 0, image=self.gif_frames[self.current_frame], anchor="nw")  # Adjust the y coordinate
         self.current_frame = (self.current_frame + 1) % len(self.gif_frames)
-        self.win.after(100, self.animate_gif)
+        self.after(100, self.animate_gif)
         
-    def clear_search_text(self, event):
-        self.search_entry.delete(0, END)
-
     def on_home(self):
         # an action to go back to main page
         print("Just landed on the home screen.")
@@ -125,4 +120,6 @@ class HomeWindow:
         # direct to faq page
         print("Just landed on the faq")
 
-HomeWindow()
+if __name__ == "__main__":
+    home_window = HomeWindow()
+    home_window.mainloop()

@@ -1,25 +1,28 @@
 import csv
 from tkinter import *
+from ttkbootstrap import *
 
 class SearchWindow:
     def __init__(self, parent):
         self.parent = parent
         self.top = Toplevel(parent)
-        self.top.geometry("300x200")
-        self.top.title('Search Results')
+        self.top.geometry("160x230")
+        self.top.title('Search Entries')
         
-        self.userdata = self.read_csv_data("entries.csv")
+        self.userdata = self.read_csv_data("test_entries.csv")
 
         self.entry = Entry(self.top)
-        self.entry.pack()
+        self.entry.pack(padx=5, pady=5)
+        self.entry.insert(0, "\U0001F50D Search Names")
+        self.entry.bind("<FocusIn>", self.fadein)
         self.entry.bind('<KeyRelease>', self.scan_key)
 
-        self.listbox = Listbox(self.top)
+        self.listbox = Listbox(self.top, height=10)
         self.listbox.pack()
         self.listbox.bind('<Double-Button-1>', self.show_user_info)
 
         self.info_label = Label(self.top, text="", justify=LEFT)
-        self.info_label.pack()
+        self.info_label.pack(pady=1)
 
         self.update(self.userdata)
 
@@ -58,9 +61,12 @@ class SearchWindow:
                                 f"Address: {user_info[2]}\n"
                                 f"Civil Status: {user_info[3]}\n"
                                 f"Birthday: {user_info[4]}\n"
-                                f"Phone Number: {user_info[5]}\n"
-                                f"Landline: {user_info[6]}")
-
+                                f"Email : {user_info[5]}\n"
+                                f"Phone Number: {user_info[6]}")
+    
+    def fadein(self, event):
+        self.entry.delete(0, END)
+    
 if __name__ == "__main__":
     ws = Tk()
     app = SearchWindow(ws)
