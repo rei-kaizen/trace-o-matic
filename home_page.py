@@ -2,13 +2,14 @@ from tkinter import *
 from PIL import Image, ImageTk
 import imageio
 from signup_page import SignUpWindow
+from test_search_page import SearchWindow
 
 class HomeWindow:
     def __init__(self):
         self.win = Tk()
         self.win.geometry("1000x600")
         self.win.title('Trace-O-Matic')
-        
+                        
         # add icon to window
         logo = Image.open("assets/tom-logo.png")
         logo = logo.resize((50, 50), Image.LANCZOS)
@@ -30,14 +31,11 @@ class HomeWindow:
         # search engine
         search = Label(header_frame, text="\U0001F50D", font=("Corbel", 11), bg="white")
         search.place(x=60, y=85)
-
-        # search entry
-        self.search_entry = Entry(header_frame, bd=0, bg="white")
-        self.search_entry.place(x=80, y=90)
-        self.search_entry.insert(0, "Search...")
-        self.search_entry.bind("<FocusIn>", self.clear_search_text)
-
-
+        
+        # search button
+        self.search_button = Button(text="Search....", font=("Corbel", 9),  bd=0, bg="white", activebackground="#D9EAE9", command=self.search)
+        self.search_button.place(x=80, y=90)
+        
         # home button
         self.home_button = Button(header_frame, text="Home", font=("Corbel", 9),  bd=0, bg="white", activebackground="#D9EAE9", command=self.on_home)
         self.home_button.place(x=400, y=90)
@@ -91,6 +89,12 @@ class HomeWindow:
         #run window
         self.win.mainloop()
         
+    def sign_up(self):
+        SignUpWindow(self.win)
+    
+    def search(self):
+        SearchWindow(self.win)
+        
     def load_gif_frames(self, gif_path):
         gif = imageio.mimread(gif_path)
         frames = []
@@ -120,8 +124,5 @@ class HomeWindow:
     def on_faq(self):
         # direct to faq page
         print("Just landed on the faq")
-    
-    def sign_up(self):
-        SignUpWindow(self.win)    
 
 HomeWindow()

@@ -1,59 +1,67 @@
 import csv
 from tkinter import *
 
-def read_csv_data(filename):
-    data = []
-    with open(filename, newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        for row in reader:
-            data.append(row)
-    return data
+class SearchWindow:
+    def __init__(self, parent):
+        self.parent = parent
+        self.top = Toplevel(parent)
+        self.top.geometry("300x200")
+        self.top.title('Search Results')
+        
+        self.userdata = self.read_csv_data("entries.csv")
 
-def scan_key(event):
-    val = event.widget.get()
-    if val == '':
-        data = userdata
-    else:
+        self.entry = Entry(self.top)
+        self.entry.pack()
+        self.entry.bind('<KeyRelease>', self.scan_key)
+
+        self.listbox = Listbox(self.top)
+        self.listbox.pack()
+        self.listbox.bind('<Double-Button-1>', self.show_user_info)
+
+        self.info_label = Label(self.top, text="", justify=LEFT)
+        self.info_label.pack()
+
+        self.update(self.userdata)
+
+    def read_csv_data(self, filename):
         data = []
-        for user in userdata:
-            if any(val.lower() in str(item).lower() for item in user):
-                data.append(user)
-    update(data)
+        with open(filename, newline='') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                data.append(row)
+        return data
 
-def update(data):
-    listbox.delete(0, 'end')
-    for user in data:
-        listbox.insert('end', user[0])  # Display the name (column 1)
+    def scan_key(self, event):
+        val = self.entry.get()
+        if val == '':
+            data = self.userdata
+        else:
+            data = []
+            for user in self.userdata:
+                if any(val.lower() in str(item).lower() for item in user):
+                    data.append(user)
+        self.update(data)
 
-def show_user_info(event):
-    selected_user_index = listbox.curselection()
-    if selected_user_index:
-        user_info = userdata[selected_user_index[0]]
-        show_info(user_info)
+    def update(self, data):
+        self.listbox.delete(0, 'end')
+        for user in data:
+            self.listbox.insert('end', user[0])  # Display the name (column 1)
 
-def show_info(user_info):
-    info_label.config(text=f"Gender: {user_info[1]}\n"
-                            f"Address: {user_info[2]}\n"
-                            f"Civil Status: {user_info[3]}\n"
-                            f"Birthday: {user_info[4]}\n"
-                            f"Phone Number: {user_info[5]}\n"
-                            f"Landline: {user_info[6]}")
+    def show_user_info(self, event):
+        selected_user_index = self.listbox.curselection()
+        if selected_user_index:
+            user_info = self.userdata[selected_user_index[0]]
+            self.show_info(user_info)
 
-userdata = read_csv_data("entries.csv")
+    def show_info(self, user_info):
+        self.info_label.config(text=f"Gender: {user_info[1]}\n"
+                                f"Address: {user_info[2]}\n"
+                                f"Civil Status: {user_info[3]}\n"
+                                f"Birthday: {user_info[4]}\n"
+                                f"Phone Number: {user_info[5]}\n"
+                                f"Landline: {user_info[6]}")
 
-ws = Tk()
-
-entry = Entry(ws)
-entry.pack()
-entry.bind('<KeyRelease>', scan_key)
-
-listbox = Listbox(ws)
-listbox.pack()
-listbox.bind('<Double-Button-1>', show_user_info)
-
-info_label = Label(ws, text="", justify=LEFT)
-info_label.pack()
-
-update(userdata)
-
-ws.mainloop()
+if __name__ == "__main__":
+    ws = Tk()
+    app = SearchWindow(ws)
+    ws.mainloop()
