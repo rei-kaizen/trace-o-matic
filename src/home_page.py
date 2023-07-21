@@ -12,7 +12,7 @@ import imageio
 
 class HomeWindow(tk.Tk):
     WINDOW_WIDTH = 1000
-    WINDOW_HEIGHT = 600
+    WINDOW_HEIGHT = 500
     GIF_FRAME_DELAY = 100 
 
     def __init__(self):
@@ -68,7 +68,7 @@ class HomeWindow(tk.Tk):
         icon1_label.place(x=800, y=90)
 
     def set_animated_gif(self):
-        gif_path = "assets/smart trace.gif"
+        gif_path = "assets/newbg.gif"
         self.gif_frames = self.load_gif_frames(gif_path)
         self.current_frame = 0
         self.canvas = Canvas(self, width=self.WINDOW_WIDTH, height=self.WINDOW_HEIGHT, highlightthickness=0)
@@ -76,8 +76,8 @@ class HomeWindow(tk.Tk):
         self.animate_gif()
 
     def set_signup_button(self):
-        signup_button = Button(self, text="Sign Up", bootstyle="success-outline", command=self.sign_up)
-        signup_button.place(x=475, y=370)
+        signup_button = Button(self, text="Sign Up", bootstyle="success", command=self.sign_up)
+        signup_button.place(x=480, y=440)
 
     def load_gif_frames(self, gif_path):
         with imageio.get_reader(gif_path) as reader:
