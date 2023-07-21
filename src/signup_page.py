@@ -95,7 +95,7 @@ class SignUpWindow:
         email = self.emeil_entry.get()
         cellnum = self.cp_entry.get()
 
-        with open('entries.csv', 'a', newline='') as file:
+        with open('test_entries.csv', 'a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([name, gender, location, civil_status, birthdate, email, cellnum])
 
