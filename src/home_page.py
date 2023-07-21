@@ -21,7 +21,6 @@ class HomeWindow(tk.Tk):
         self.set_window_properties()
         self.set_header_frame()
         self.set_animated_gif()
-        self.set_slogan_labels()
         self.set_signup_button()
 
     def set_window_properties(self):
@@ -69,18 +68,12 @@ class HomeWindow(tk.Tk):
         icon1_label.place(x=800, y=90)
 
     def set_animated_gif(self):
-        gif_path = "assets/home-bg4.gif"
+        gif_path = "assets/smart trace.gif"
         self.gif_frames = self.load_gif_frames(gif_path)
         self.current_frame = 0
         self.canvas = Canvas(self, width=self.WINDOW_WIDTH, height=self.WINDOW_HEIGHT, highlightthickness=0)
         self.canvas.pack()
         self.animate_gif()
-
-    def set_slogan_labels(self):
-        slogan_label = Label(self, text="SMART TRACE,", font=("Arial Rounded MT Bold", 25), fg="white")
-        slogan_label.place(x=380, y=250)
-        slogan_label1 = Label(self, text="SAFEGUARDING EVERY PLACE", font=("Arial Rounded MT Bold", 25), fg="white")
-        slogan_label1.place(x=250, y=300)
 
     def set_signup_button(self):
         signup_button = Button(self, text="Sign Up", bootstyle="success-outline", command=self.sign_up)
@@ -106,15 +99,12 @@ class HomeWindow(tk.Tk):
         SearchWindow(self)
 
     def on_home(self):
-        # direct to the main page
         self.deiconify()
 
     def on_about(self):
-        # direct to about page
         AboutWindow(self)
 
     def on_faq(self):
-        # direct to faq page
         FAQWindow(self)
 
 

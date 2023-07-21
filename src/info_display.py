@@ -2,24 +2,29 @@ from tkinter import *
 from ttkbootstrap import *
 
 class OutputWindow:
-    def __init__(self, sideparent, user_info):
-        self.sideparent = sideparent
+    WINDOW_WIDTH = 250
+    WINDOW_HEIGHT = 120
+
+    def __init__(self, side_parent, user_info):
+        self.side_parent = side_parent
         self.user_info = user_info
-        self.top = Toplevel(sideparent)
-        self.top.geometry("250x120")
+        self.top = Toplevel(side_parent)
+        self.top.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
         self.top.title("User Information")
 
+        self.create_info_label()
+        self.show_info()
+
+    def create_info_label(self):
         self.info_label = Label(self.top, text="", justify=LEFT)
         self.info_label.pack(pady=5)
 
-        self.show_info()
-
     def show_info(self):
-        user_info = self.user_info
-        self.info_label.config(text=f"Name: {user_info[0]}\n"
-                                f"Gender: {user_info[1]}\n"
-                                f"Address: {user_info[2]}\n"
-                                f"Civil Status: {user_info[3]}\n"
-                                f"Birthday: {user_info[4]}\n"
-                                f"Email: {user_info[5]}\n"
-                                f"Phone Number: {user_info[6]}")
+        name, gender, address, civil_status, birthday, email, phone_number = self.user_info
+        self.info_label.config(text=f"Name: {name}\n"
+                                f"Gender: {gender}\n"
+                                f"Address: {address}\n"
+                                f"Civil Status: {civil_status}\n"
+                                f"Birthday: {birthday}\n"
+                                f"Email: {email}\n"
+                                f"Phone Number: {phone_number}")

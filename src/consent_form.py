@@ -1,21 +1,31 @@
 from tkinter import *
 
 class DataPrivacy:
+    WINDOW_WIDTH = 900
+    WINDOW_HEIGHT = 600
+
     def __init__(self, parent):
         self.parent = parent
         self.win = Toplevel(parent)
-        self.win.geometry("900x550")
+        self.win.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
         self.win.title('DATA PRIVACY CONSENT')
 
-        # user information input fields
+        self.create_heading_label()
+        self.create_line()
+        self.create_consent_label()
+        self.create_close_button()
+
+        self.win.mainloop()
+
+    def create_heading_label(self):
         heading_label = Label(self.win, text="DATA PRIVACY CONSENT", font=("Arial Rounded MT Bold", 20))
-        heading_label.place(x=20, y=10)
-        
+        heading_label.pack(pady=10)
+
+    def create_line(self):
         line = Label(self.win, text="-"*100, font=("Arial Rounded MT Bold", 10))
-        line.place(x=20, y=50)
+        line.pack(pady=10)
 
-
-        # data privacy consent text
+    def create_consent_label(self):
         consent_text = """By clicking "I Agree," you confirm that you willingly and voluntarily give consent 
 for the collection and processing of your data for the purposes outlined below.
 
@@ -39,13 +49,11 @@ By continuing to use this app, you agree to these terms and conditions regarding
 If you do not agree, please refrain from using the app."""
 
         consent_label = Label(self.win, text=consent_text, font=("Corbel", 12), justify=LEFT)
-        consent_label.place(x=20, y=80)
+        consent_label.pack(pady=10)
 
-        # close button
+    def create_close_button(self):
         close_button = Button(self.win, text="Close", font=("Corbel", 10), fg="#286A6F", bg="#B4DDDA", activebackground="#1E5256", bd=1, height=2, width=10, command=self.close_window)
-        close_button.place(x=800, y=500)
-
-        self.win.mainloop()
+        close_button.pack(side=BOTTOM, pady=10)
 
     def close_window(self):
         self.win.destroy()
