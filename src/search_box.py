@@ -1,6 +1,5 @@
 import csv
 from tkinter import *
-from ttkbootstrap import *
 from info_display import OutputWindow 
 
 class SearchWindow:
