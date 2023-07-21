@@ -1,18 +1,16 @@
 from tkinter import *
 from PIL import ImageTk, Image
-
-class FAQWindow:
+class FAQWindow(Toplevel):
     def __init__(self, parent):
-        self.home_page = parent
-        self.win = Toplevel(parent)
-        self.win.title("Frequently Asked Questions")
+        super().__init__(parent)
+        self.title("Frequently Asked Questions")
+        self.geometry("1000x600")
 
+        # Load the image and resize it
         faqs_bg = Image.open("assets/faqs-p.png")
-        self.faqs_bg_image = ImageTk.PhotoImage(faqs_bg)  
-        self.faqs_bg_label = Label(self.win, image=self.faqs_bg_image)  
-        self.faqs_bg_label.pack()
+        faqs_bg = faqs_bg.resize((1000, 600), Image.LANCZOS)
 
-if __name__ == "__main__":
-    root = Tk()
-    faq_window = FAQWindow(root)
-    root.mainloop()
+        # Display the image
+        self.faqs_bgi = ImageTk.PhotoImage(faqs_bg)
+        self.about_bg_label = Label(self, image=self.faqs_bgi)
+        self.about_bg_label.pack()
