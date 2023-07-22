@@ -11,10 +11,9 @@ This Python application is designed to aid contact tracing efforts and help cont
 3. You can remove the test entries, which are dummy data included in the app.
 4. Run the program using the command python main.py.
 5. When the app opens, you can use the buttons to navigate around.
-6. This data will be used by the app to save and display them to you.
-7. The app will use this information to store and display them to you.
-8. The app will show the entries from the search field.
-9. Optionally, you can exit the program or add a new entry.
+6. Your entry will be used by the app to save and display them to you.
+7. The app will show the entries from the search field.
+8. Optionally, you can exit the program or add a new entry.
 
 or
 
