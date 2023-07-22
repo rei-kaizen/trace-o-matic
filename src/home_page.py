@@ -1,12 +1,11 @@
+import imageio
 import tkinter as tk
-from tkinter import Frame, Label, Canvas
-from tkinter.constants import NW
+from tkinter import Frame, Label, Canvas, NW
 from PIL import Image, ImageTk
 from ttkbootstrap import Style, Button
 from signup_page import SignUpWindow
 from search_box import SearchWindow
 from base_window import AboutWindow, FAQWindow
-import imageio
 
 class HomeWindow(tk.Tk):
     WINDOW_WIDTH = 1000
@@ -16,43 +15,36 @@ class HomeWindow(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.set_window_properties()
-        self.set_header_frame()
+        self.window_properties()
+        self.set_logo()
+        self.banner()
         self.set_animated_gif()
         self.set_buttons()
 
-    def set_window_properties(self):
+    def window_properties(self):
         self.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
         self.title('Trace-O-Matic')
         self.ttk_style = Style(theme='litera')
-        self.set_icon()
 
-    def set_icon(self):
+    def set_logo(self):
         logo = Image.open("assets/tom-logo.png").resize((50, 50), Image.LANCZOS)
         self.logo_photo = ImageTk.PhotoImage(logo)
         self.iconphoto(False, self.logo_photo)
 
-    def set_header_frame(self):
-        header_frame = Frame(self, width=self.WINDOW_WIDTH, height=120, bg="white")
-        header_frame.pack()
+    def banner(self):
+        head_frame = Frame(self, width=self.WINDOW_WIDTH, height=120, bg="white")
+        head_frame.pack()
 
-        # labels
-        logo_label = Label(header_frame, image=self.logo_photo, bg="white")
+        logo_label = Label(head_frame, image=self.logo_photo, bg="white")
         logo_label.place(x=490, y=0)
 
-        title_label = Label(header_frame, text="Trace-O-Matic", font=("Gadugi 10 bold"), fg="black", bg="white")
+        title_label = Label(head_frame, text="Trace-O-Matic", font=("Gadugi 10 bold"), fg="black", bg="white")
         title_label.place(x=470, y=50)
 
-        #icon image
-        icon1 = Image.open("assets/add-icon1.jpg").resize((20, 20), Image.LANCZOS)
-        self.icon1_photo = ImageTk.PhotoImage(icon1)
-        icon1_label = Label(header_frame, image=self.icon1_photo, bg="white")
-        icon1_label.place(x=800, y=90)
-
-    def create_button(self, text, x, y, bootstyle, command):
-        button = Button(self, text=text, bootstyle=bootstyle, command=command)
-        button.place(x=x, y=y)
-        return button
+        newntry_icon = Image.open("assets/add-icon1.jpg").resize((20, 20), Image.LANCZOS)
+        self.newntry_icon_img = ImageTk.PhotoImage(newntry_icon)
+        newntry_icon_label = Label(head_frame, image=self.newntry_icon_img, bg="white")
+        newntry_icon_label.place(x=800, y=90)
     
     def set_buttons(self):
         self.signup_button = self.create_button("Sign Up", 480, 440, "success", self.sign_up)
@@ -81,6 +73,11 @@ class HomeWindow(tk.Tk):
         self.canvas.create_image(0, 0, image=self.gif_frames[self.current_frame], anchor=NW)
         self.current_frame = (self.current_frame + 1) % len(self.gif_frames)
         self.after(self.GIF_FRAME_DELAY, self.animate_gif)
+    
+    def create_button(self, text, x, y, bootstyle, command):
+        button = Button(self, text=text, bootstyle=bootstyle, command=command)
+        button.place(x=x, y=y)
+        return button
 
     def sign_up(self):
         self.withdraw()

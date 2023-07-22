@@ -9,11 +9,14 @@ class OutputWindow:
         self.side_parent = side_parent
         self.user_info = user_info
         self.top = Toplevel(side_parent)
-        self.top.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
-        self.top.title("User Information")
-
+        
+        self.window_properties()
         self.create_info_label()
         self.show_info()
+
+    def window_properties(self):
+        self.top.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
+        self.top.title("User Information")
 
     def create_info_label(self):
         self.info_label = Label(self.top, text="", justify=LEFT)
