@@ -5,8 +5,7 @@ from PIL import Image, ImageTk
 from ttkbootstrap import Style, Button
 from signup_page import SignUpWindow
 from search_box import SearchWindow
-from about_page import AboutWindow
-from faq_page import FAQWindow
+from base_window import AboutWindow, FAQWindow
 import imageio
 
 
