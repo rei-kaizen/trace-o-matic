@@ -1,6 +1,8 @@
 # Trace-O-Matic
 This Python application is designed to aid contact tracing efforts and help contain outbreaks of COVID-19. The app prompts users to enter basic information about themselves. This information is used to notify individuals who may have been in close contact with a confirmed COVID-19 case, thereby mitigating the spread of the virus and protecting public health. By collecting and analyzing this data, health authorities can allocate resources more efficiently and respond to outbreaks more effectively.
 
+[Link to my demo video] (https://drive.google.com/file/d/1Wi8yUwBQQVKv24XzeLTFgN5HLSCjIW2L/view?usp=sharing)
+
 ## 📄 Documentation 
 <details><summary><h3> 🤔 Usage </h3></summary>
 
