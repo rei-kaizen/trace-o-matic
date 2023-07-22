@@ -28,6 +28,8 @@ or
 <details><summary><h3> 🔰 Additional information </h3></summary>
 
 -----
+**Screenshots** <br>
+![app-demoo](https://github.com/rei-kaizen/trace-o-matic/assets/111290781/45514c6a-42e5-4325-aa42-f7fc424ac7a6)
 
 </details>
 
