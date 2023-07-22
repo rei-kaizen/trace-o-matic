@@ -8,7 +8,6 @@ from search_box import SearchWindow
 from base_window import AboutWindow, FAQWindow
 import imageio
 
-
 class HomeWindow(tk.Tk):
     WINDOW_WIDTH = 1000
     WINDOW_HEIGHT = 500
@@ -20,7 +19,7 @@ class HomeWindow(tk.Tk):
         self.set_window_properties()
         self.set_header_frame()
         self.set_animated_gif()
-        self.set_signup_button()
+        self.set_buttons()
 
     def set_window_properties(self):
         self.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
@@ -44,27 +43,24 @@ class HomeWindow(tk.Tk):
         title_label = Label(header_frame, text="Trace-O-Matic", font=("Gadugi 10 bold"), fg="black", bg="white")
         title_label.place(x=470, y=50)
 
-        # buttons
-        self.search_button = Button(header_frame, text="\U0001F50D  Search....", bootstyle="light", command=self.search)
-        self.search_button.place(x=80, y=90)
-
-        self.home_button = Button(header_frame, text="Home", bootstyle="light", command=self.on_home)
-        self.home_button.place(x=400, y=90)
-
-        self.about_button = Button(header_frame, text="About", bootstyle="light", command=self.on_about)
-        self.about_button.place(x=500, y=90)
-
-        self.faq_button = Button(header_frame, text="FAQ", bootstyle="light", command=self.on_faq)
-        self.faq_button.place(x=600, y=90)
-
-        self.add_button = Button(header_frame, text="New Entry", bootstyle="light", command=self.sign_up)
-        self.add_button.place(x=820, y=87)
-
         #icon image
         icon1 = Image.open("assets/add-icon1.jpg").resize((20, 20), Image.LANCZOS)
         self.icon1_photo = ImageTk.PhotoImage(icon1)
         icon1_label = Label(header_frame, image=self.icon1_photo, bg="white")
         icon1_label.place(x=800, y=90)
+
+    def create_button(self, text, x, y, bootstyle, command):
+        button = Button(self, text=text, bootstyle=bootstyle, command=command)
+        button.place(x=x, y=y)
+        return button
+    
+    def set_buttons(self):
+        self.signup_button = self.create_button("Sign Up", 480, 440, "success", self.sign_up)
+        self.search_button = self.create_button("\U0001F50D  Search....", 80, 90, "light", self.search)
+        self.home_button = self.create_button("Home", 400, 90, "light", self.on_home)
+        self.about_button = self.create_button("About", 500, 90, "light", self.on_about)
+        self.faq_button = self.create_button("FAQ", 600, 90, "light", self.on_faq)
+        self.add_button = self.create_button("New Entry", 820, 87, "light", self.sign_up)
 
     def set_animated_gif(self):
         gif_path = "assets/newbg.gif"
@@ -73,10 +69,6 @@ class HomeWindow(tk.Tk):
         self.canvas = Canvas(self, width=self.WINDOW_WIDTH, height=self.WINDOW_HEIGHT, highlightthickness=0)
         self.canvas.pack()
         self.animate_gif()
-
-    def set_signup_button(self):
-        signup_button = Button(self, text="Sign Up", bootstyle="success", command=self.sign_up)
-        signup_button.place(x=480, y=440)
 
     def load_gif_frames(self, gif_path):
         with imageio.get_reader(gif_path) as reader:
