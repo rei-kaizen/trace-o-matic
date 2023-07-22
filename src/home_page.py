@@ -16,7 +16,7 @@ class HomeWindow(tk.Tk):
         super().__init__()
 
         self.window_properties()
-        self.set_logo()
+        self.icons()
         self.banner()
         self.set_animated_gif()
         self.set_buttons()
@@ -26,25 +26,26 @@ class HomeWindow(tk.Tk):
         self.title('Trace-O-Matic')
         self.ttk_style = Style(theme='litera')
 
-    def set_logo(self):
+    def icons(self):
         logo = Image.open("assets/tom-logo.png").resize((50, 50), Image.LANCZOS)
-        self.logo_photo = ImageTk.PhotoImage(logo)
-        self.iconphoto(False, self.logo_photo)
+        self.logo_img = ImageTk.PhotoImage(logo)
+        self.iconphoto(False, self.logo_img)
+
+        newntry_icon = Image.open("assets/add-icon1.jpg").resize((20, 20), Image.LANCZOS)
+        self.newntry_icon_img = ImageTk.PhotoImage(newntry_icon)
 
     def banner(self):
         head_frame = Frame(self, width=self.WINDOW_WIDTH, height=120, bg="white")
         head_frame.pack()
 
-        logo_label = Label(head_frame, image=self.logo_photo, bg="white")
+        logo_label = Label(head_frame, image=self.logo_img, bg="white")
         logo_label.place(x=490, y=0)
 
         title_label = Label(head_frame, text="Trace-O-Matic", font=("Gadugi 10 bold"), fg="black", bg="white")
         title_label.place(x=470, y=50)
 
-        newntry_icon = Image.open("assets/add-icon1.jpg").resize((20, 20), Image.LANCZOS)
-        self.newntry_icon_img = ImageTk.PhotoImage(newntry_icon)
         newntry_icon_label = Label(head_frame, image=self.newntry_icon_img, bg="white")
-        newntry_icon_label.place(x=800, y=90)
+        newntry_icon_label.place(x=770, y=90)
     
     def set_buttons(self):
         self.signup_button = self.create_button("Sign Up", 480, 440, "success", self.sign_up)
@@ -52,7 +53,7 @@ class HomeWindow(tk.Tk):
         self.home_button = self.create_button("Home", 400, 90, "light", self.on_home)
         self.about_button = self.create_button("About", 500, 90, "light", self.on_about)
         self.faq_button = self.create_button("FAQ", 600, 90, "light", self.on_faq)
-        self.add_button = self.create_button("New Entry", 820, 87, "light", self.sign_up)
+        self.newntry_button = self.create_button("New Entry", 820, 87, "light", self.sign_up)
 
     def set_animated_gif(self):
         gif_path = "assets/newbg.gif"

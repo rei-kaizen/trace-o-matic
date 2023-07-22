@@ -9,16 +9,18 @@ class SearchWindow:
     def __init__(self, parent):
         self.parent = parent
         self.top = tk.Toplevel(parent)
-        self.top.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
-        self.top.title('Search Entries')
         
-        self.user_data = self.read_csv_data("test_entries.csv")
-
+        self.window_properties()
         self.create_search_input()
         self.create_user_listbox()
         self.create_info_label()
 
+        self.user_data = self.read_csv_data("test_entries.csv")
         self.update_user_listbox(self.user_data)
+
+    def window_properties(self):
+        self.top.geometry(f"{self.WINDOW_WIDTH}x{self.WINDOW_HEIGHT}")
+        self.top.title('Search Entries')
 
     def read_csv_data(self, filename):
         data = []
