@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter.ttk as ttk
-import ttkbootstrap as tb
+from ttkbootstrap import Button, DateEntry
 from consent_form import DataPrivacy
 import csv
 
@@ -17,7 +17,7 @@ class SignUpWindow:
         self.window_properties()
         self.banner()
         self.set_input_fields()
-        self.buttons()
+        self.set_buttons()
 
         self.win1.mainloop()
 
@@ -41,18 +41,19 @@ class SignUpWindow:
         self.datetime = self.calendar(300, 240)
         self.cp_entry = self.input_fields("Phone Number", 20, 310, 40)
 
-    def buttons(self):
+    def set_buttons(self):
         agree = Checkbutton(self.win1, text="I Agree to", font=("Corbel", 10), activebackground="#39767A")
         agree.place(x=20, y=375)
 
-        consent = tb.Button(self.win1, text="Data Privacy Consent.", bootstyle="light", command=self.consent)
-        consent.place(x=100, y=375)
+        self.consent = self.create_button("Data Privacy Consent.", 100, 375, "light", self.consent)
+        self.submit = self.create_button("Submit", 20, 420, "info", self.submit)
+        self.cancel = self.create_button("Cancel", 100, 420, "info-outline", self.close_window)
     
-        submit = tb.Button(self.win1, text="Submit",  bootstyle="info", command=self.submit)
-        submit.place(x=20, y=420)
+    def create_button(self, text, x, y, bootstyle, command):
+        button = Button(self.win1, text=text, bootstyle=bootstyle, command=command)
+        button.place(x=x, y=y)
 
-        cancel = tb.Button(self.win1, text="Cancel", bootstyle="info-outline", command=self.close_window)
-        cancel.place(x=100, y=420)
+        return button
 
     def input_fields(self, label_text, x_pos, y_pos, width):
         label = Label(self.win1, text=label_text, font=("Corbel", 10), fg="black")
@@ -73,7 +74,7 @@ class SignUpWindow:
         return combo
 
     def calendar(self, x_pos, y_pos):
-        calendar = tb.DateEntry(self.win1)
+        calendar = DateEntry(self.win1)
         calendar.place(x=x_pos, y=y_pos)
 
         return calendar

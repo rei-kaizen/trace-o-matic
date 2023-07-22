@@ -77,6 +77,7 @@ class HomeWindow(tk.Tk):
     def create_button(self, text, x, y, bootstyle, command):
         button = Button(self, text=text, bootstyle=bootstyle, command=command)
         button.place(x=x, y=y)
+
         return button
 
     def sign_up(self):
@@ -94,8 +95,3 @@ class HomeWindow(tk.Tk):
 
     def on_faq(self):
         FAQWindow(self)
-
-
-if __name__ == "__main__":
-    home_window = HomeWindow()
-    home_window.mainloop()
